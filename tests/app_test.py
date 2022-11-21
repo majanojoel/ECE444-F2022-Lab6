@@ -1,5 +1,4 @@
 import pytest
-import os
 import json
 from pathlib import Path
 
@@ -75,6 +74,7 @@ def test_messages(client):
     assert b"&lt;Hello&gt;" in rv.data
     assert b"<strong>HTML</strong> allowed here" in rv.data
 
+
 def test_search(client):
     login(client, app.config["USERNAME"], app.config["PASSWORD"])
     client.post(
@@ -90,6 +90,7 @@ def test_search(client):
     rv = client.get('/search/?query=This')
     assert b"<strong>HTML</strong> allowed here" not in rv.data
     assert b"This is a nice test!" in rv.data
+
 
 def test_delete_message(client):
     """Ensure the messages are being deleted"""
